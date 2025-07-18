@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
-import { auth } from "../../config/firebase";
+import { auth, db } from "../../config/firebase";
+import { doc, setDoc } from "firebase/firestore";
 import {
   Box,
   Button,
@@ -13,6 +14,7 @@ import {
   Link,
   Alert,
   InputAdornment,
+  Snackbar,
 } from "@mui/material";
 import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
 import EmailOutlinedIcon from "@mui/icons-material/EmailOutlined";
@@ -33,6 +35,7 @@ const Register: React.FC = () => {
   const [policy, setPolicy] = useState(false);
   const [error, setError] = useState("");
   const [strength, setStrength] = useState("Weak");
+  const [success, setSuccess] = useState(false);
   const navigate = useNavigate();
 
   const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -53,9 +56,21 @@ const Register: React.FC = () => {
         email,
         password
       );
-      await updateProfile(userCredential.user, { displayName: name });
-      // Redirige a login u otra página
-      navigate("/login");
+      const user = userCredential.user;
+      // Actualiza el displayName en el perfil de Auth
+      await updateProfile(user, { displayName: name });
+
+      // Guarda los datos en Firestore
+      await setDoc(doc(db, "users", user.uid), {
+        name,
+        email,
+        // Agrega aquí más campos
+      });
+
+      setSuccess(true);
+      setTimeout(() => {
+        navigate("/login");
+      }, 1800); // 1.8 segundos para que vea el alert
     } catch (err: any) {
       setError(err.message || "Error en el registro.");
     }
@@ -249,6 +264,15 @@ const Register: React.FC = () => {
             </span>
           </Typography>
         </Paper>
+        <Snackbar
+          open={success}
+          anchorOrigin={{ vertical: "top", horizontal: "center" }}
+          autoHideDuration={1600}
+        >
+          <Alert severity="success" sx={{ width: "100%" }}>
+            ¡Registro exitoso! Ahora puedes iniciar sesión.
+          </Alert>
+        </Snackbar>
       </Box>
     </Box>
   );
