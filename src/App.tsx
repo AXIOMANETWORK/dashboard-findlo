@@ -19,6 +19,7 @@ function App() {
           <Route path="/dashboard" element={<DashboardLayout />}>
             <Route index element={<Dashboard />} />
             <Route path="negocios" element={<BusinessRegistry />} />
+            <Route path="catalogo" element={<BusinessRegistry />} />
           </Route>
         </Routes>
       </BrowserRouter>

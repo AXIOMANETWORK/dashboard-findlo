@@ -15,7 +15,7 @@ import { Outlet, useNavigate, useLocation } from "react-router-dom";
 const sideMenu = [
   { text: "Home", icon: <HomeIcon sx={{ color: "#4ADE80" }} />, path: "/dashboard" },
   { text: "Inbox", icon: <MailIcon sx={{ color: "#FF4151" }} />, path: null },
-  { text: "Catalogo", icon: <ListAltIcon sx={{ color: "#14ADEB" }} />, path: "/dashboard/negocios" },
+  { text: "Catalogo", icon: <ListAltIcon sx={{ color: "#14ADEB" }} />, path: "/dashboard/catalogo" },
   {
     text: "Registro de Negocios",
     icon: <StorefrontIcon sx={{ color: "#FFA580" }} />,
