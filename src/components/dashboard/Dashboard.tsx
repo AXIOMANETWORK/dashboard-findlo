@@ -6,27 +6,12 @@ import {
   IconButton,
   TextField,
   InputAdornment,
-  List,
-  ListItem,
-  ListItemIcon,
-  ListItemText,
-  Divider,
   Paper,
   Button,
 } from "@mui/material";
-import ListItemButton from "@mui/material/ListItemButton";
 import SearchIcon from "@mui/icons-material/Search";
-import HomeIcon from "@mui/icons-material/Home";
-import MailIcon from "@mui/icons-material/Mail";
-import ListAltIcon from "@mui/icons-material/ListAlt";
-import StorefrontIcon from "@mui/icons-material/Storefront";
-import MessageIcon from "@mui/icons-material/Message";
-import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
-import PersonIcon from "@mui/icons-material/Person";
-import SettingsIcon from "@mui/icons-material/Settings";
 import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
 import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
-import MenuIcon from "@mui/icons-material/Menu";
 import {
   LineChart,
   Line,
@@ -59,76 +44,11 @@ const ordersData = [
   { name: "Sun", value: 17 },
 ];
 
-const sideMenu = [
-  { text: "Home", icon: <HomeIcon sx={{ color: "#4ADE80" }} /> },
-  { text: "Inbox", icon: <MailIcon sx={{ color: "#FF4151" }} /> },
-  { text: "Catalogo", icon: <ListAltIcon sx={{ color: "#14ADEB" }} /> },
-  {
-    text: "Registro de Negocios",
-    icon: <StorefrontIcon sx={{ color: "#FFA580" }} />,
-  },
-  { text: "Mensajes", icon: <MessageIcon sx={{ color: "#6B7280" }} /> },
-  { text: "Calender", icon: <CalendarMonthIcon sx={{ color: "#FACC15" }} /> },
-  { text: "Usuario", icon: <PersonIcon sx={{ color: "#2D2D2D" }} /> },
-  { text: "Settings", icon: <SettingsIcon sx={{ color: "#6B7280" }} /> },
-];
-
 const Dashboard: React.FC = () => {
   return (
-    <Box sx={{ minHeight: "100vh", display: "flex", background: "#F9FAFB" }}>
-      {/* Sidebar */}
+    <>
+      {/* Header */}
       <Box
-        sx={{
-          width: 220,
-          background: "#fff",
-          boxShadow: "2px 0 16px rgba(45,45,45,0.06)",
-          px: 2,
-          pt: 3,
-          display: "flex",
-          flexDirection: "column",
-        }}
-      >
-        <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
-          <img
-            src={require("../../assets/icon-rojo.png")}
-            alt="FindLO"
-            style={{ height: 38, width: "auto", objectFit: "contain" }}
-          />
-          <Typography variant="h6" sx={{ fontWeight: 800, color: "#2D2D2D" }}>
-            FindLO
-          </Typography>
-          <IconButton sx={{ ml: "auto" }}>
-            <MenuIcon />
-          </IconButton>
-        </Box>
-        <List sx={{ mt: 4 }}>
-          {sideMenu.map((item) => (
-            <ListItem key={item.text} disablePadding sx={{ mb: 1 }}>
-              <ListItemButton
-                sx={{
-                  borderRadius: 2,
-                  background: item.text === "Home" ? "#F1F7FE" : "none",
-                }}
-              >
-                <ListItemIcon>{item.icon}</ListItemIcon>
-                <ListItemText
-                  primary={item.text}
-                  primaryTypographyProps={{
-                    sx: {
-                      color: item.text === "Home" ? "#4ADE80" : "#2D2D2D",
-                      fontWeight: item.text === "Home" ? 700 : 500,
-                    },
-                  }}
-                />
-              </ListItemButton>
-            </ListItem>
-          ))}
-        </List>
-      </Box>
-      {/* Main */}
-      <Box sx={{ flex: 1, bgcolor: "#F9FAFB" }}>
-        {/* Header */}
-        <Box
           sx={{
             background: "#FF4151",
             borderBottomLeftRadius: 36,
@@ -435,8 +355,7 @@ const Dashboard: React.FC = () => {
             </Paper>
           </Box>
         </Box>
-      </Box>
-    </Box>
+    </>
   );
 };
 
